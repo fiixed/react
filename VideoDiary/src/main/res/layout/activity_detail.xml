@@ -17,76 +17,62 @@
         android:layout_centerHorizontal="true"
         android:textColor="#888" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/detailVidScreenShotImageView"
-        android:layout_below="@id/detailDateTimeTextView"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/vidscreenshotdetail" />
-
     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
         android:orientation="horizontal"
-        android:layout_below="@id/detailVidScreenShotImageView"
-        android:layout_alignLeft="@id/detailDateTimeTextView"
-        android:layout_alignRight="@id/detailDateTimeTextView"
-        android:padding="15dp"
-        android:id="@+id/linearLayout">
+        android:layout_below="@+id/detailDateTimeTextView"
+        android:background="#000000">
+
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/detail_view_tag"
-            android:id="@+id/detailTagTextView"
-            android:textSize="18sp"
-            android:textColor="#888" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
 
-        <EditText
+            android:layout_alignParentRight="true"
+            android:text="@string/detail_notes_edit_text"
+            android:id="@+id/messageTextView"
+            android:padding="5dp"
+            android:gravity="right"
+
+            android:textColor="#FFFFFF"
+            android:background="#000000"
+            android:layout_weight="4"/>
+        <ImageView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/detailTagEditText"
-            android:layout_weight="1"
-            android:textSize="18sp" />
+            android:id="@+id/detailVidScreenShotImageView"
 
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/detail_add_button"
-            android:id="@+id/detailAddButton" />
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"/>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:padding="15dp"
-        android:id="@+id/tagsRelativeLayout">
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
 
-        </RelativeLayout>
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/notesEditText"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_below="@id/tagsRelativeLayout"
-        android:text="@string/detail_notes_edit_text"
-        android:id="@+id/notesTextView"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp"
-        android:textColor="#888"/>
+            android:layout_weight="3" />
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/notesEditText"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_centerHorizontal="true"
-        android:padding="15dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:layout_weight="0" />
+    </LinearLayout>
 
 
 </RelativeLayout>

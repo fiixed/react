@@ -3,14 +3,17 @@ package com.fiixed.videodiary;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,26 +23,31 @@ import java.io.File;
 
 public class MainActivity extends Activity {
 
+    private static final String TAG = "com.fiixed.videodiary.MainActivity";
+    private static final String TAG1 = "com.fiixed.videodiary.MainActivity";
+    private static final String TAG2 = "com.fiixed.videodiary.MainActivity";
+    private static final String TAG3 = "com.fiixed.videodiary.MainActivity";
+
     private static final int VIDEO_CAPTURE = 101;
     private Uri fileUri;
-    private ImageView mVidScreenshot;
+//    private ImageView mVidScreenshot;
     private ListView mListView;
-    private VideoAdapter videoAdapter;
+
 
     Video[] myVideosArray = new Video[]
             {
-                    new Video("Wednesday 15th Nov, 2013", "home, birthday", "image01"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Monday 13th Nov 2013", "work", "image03"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "home, happy", "image02"),
+                    new Video("Wednesday 15th Nov, 2013", "hey man whats up?", "image01"),
+                    new Video("Tuesday 14th Nov, 2013", "Call me I NEED you", "image02"),
+                    new Video("Monday 13th Nov, 2013", "been trying to reach you?", "image03"),
+
+                    new Video("Tuesday 14th Nov, 2013", "Andrew I'm pregnant with your baby!  please call me!", "image05"),
+                    new Video("Tuesday 14th Nov, 2013", "I miss your smile...!", "image06"),
+                    new Video("Tuesday 14th Nov, 2013", "hello?", "image07"),
+                    new Video("Tuesday 14th Nov, 2013", "what you doing?", "image02"),
+                    new Video("Tuesday 14th Nov, 2013", "I'm bored, call me", "image02"),
+                    new Video("Tuesday 14th Nov, 2013", "OMG IM OTW", "image02"),
+                    new Video("Tuesday 14th Nov, 2013", "why dont you ever call me?", "image02"),
+                    new Video("Tuesday 14th Nov, 2013", "Open the door", "image02"),
             };
 
     @Override
@@ -54,6 +62,19 @@ public class MainActivity extends Activity {
         if (mListView != null) {
             mListView.setAdapter(videoAdapter);
         }
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a,
+                                    View v, int position, long id) {
+                Video video = (Video) a.getItemAtPosition(position);
+                Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                intent.putExtra("date", video.mDate);
+                intent.putExtra("tags", video.mTags);
+                intent.putExtra("image", video.mNameOfImage);
+                startActivity(intent);
+            }
+        });
 
 //        mVidScreenshot = (ImageView) findViewById(R.id.vidImageView);
 //        mVidScreenshot.setOnClickListener(new View.OnClickListener() {
