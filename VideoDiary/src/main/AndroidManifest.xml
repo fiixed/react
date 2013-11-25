@@ -36,6 +36,12 @@
             android:parentActivityName="MainActivity">
 
         </activity>
+        <activity
+            android:name="com.fiixed.videodiary.VideoViewActivity"
+            android:label="@string/title_activity_detail"
+            android:parentActivityName="MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

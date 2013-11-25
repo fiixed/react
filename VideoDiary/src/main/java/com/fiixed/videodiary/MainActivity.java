@@ -36,18 +36,18 @@ public class MainActivity extends Activity {
 
     Video[] myVideosArray = new Video[]
             {
-                    new Video("Wednesday 15th Nov, 2013", "hey man whats up?", "image01"),
-                    new Video("Tuesday 14th Nov, 2013", "Call me I NEED you", "image02"),
-                    new Video("Monday 13th Nov, 2013", "been trying to reach you?", "image03"),
+                    new Video("Wednesday 15th Nov, 2013","Bobby Washington - message received", "hey man whats up?", "image01"),
+                    new Video("Tuesday 14th Nov, 2013", "Charlene Winter - message received" ,"Call me I NEED you", "image02"),
+                    new Video("Monday 13th Nov, 2013", "Shaun Dubuque - seen response!" ,"seen response", "shaundub"),
 
-                    new Video("Tuesday 14th Nov, 2013", "Andrew I'm pregnant with your baby!  please call me!", "image05"),
-                    new Video("Tuesday 14th Nov, 2013", "I miss your smile...!", "image06"),
-                    new Video("Tuesday 14th Nov, 2013", "hello?", "image07"),
-                    new Video("Tuesday 14th Nov, 2013", "what you doing?", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "I'm bored, call me", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "OMG IM OTW", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "why dont you ever call me?", "image02"),
-                    new Video("Tuesday 14th Nov, 2013", "Open the door", "image02"),
+                    new Video("Tuesday 14th Nov, 2013", "Miranda Kerr - message received", "Andrew I'm pregnant with your baby!  please call me!", "image05"),
+                    new Video("Tuesday 14th Nov, 2013", "Mona Lisa - message received", "I miss your smile...!", "image06"),
+                    new Video("Tuesday 14th Nov, 2013", "Bucky Buckaroo - message received" ,"hello?", "image07"),
+                    new Video("Tuesday 14th Nov, 2013","Charlene Winter - message received", "what you doing?", "image02"),
+                    new Video("Tuesday 14th Nov, 2013","Charlene Winter - message received", "I'm bored, call me", "image02"),
+                    new Video("Tuesday 14th Nov, 2013", "Charlene Winter - message received","OMG IM OTW", "image02"),
+                    new Video("Tuesday 14th Nov, 2013","Charlene Winter - message received", "why dont you ever call me?", "image02"),
+                    new Video("Tuesday 14th Nov, 2013", "Charlene Winter - message received","Open the door", "image02"),
             };
 
     @Override
@@ -67,12 +67,19 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> a,
                                     View v, int position, long id) {
+                if(position == 2) {
+
+                    Intent intent = new Intent(v.getContext(), VideoViewActivity.class);
+                    startActivity(intent);
+                } else {
+
                 Video video = (Video) a.getItemAtPosition(position);
                 Intent intent = new Intent(v.getContext(), DetailActivity.class);
                 intent.putExtra("date", video.mDate);
                 intent.putExtra("tags", video.mTags);
                 intent.putExtra("image", video.mNameOfImage);
                 startActivity(intent);
+                }
             }
         });
 

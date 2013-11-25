@@ -7,14 +7,19 @@ import android.content.Intent;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class DetailActivity extends Activity {
@@ -25,6 +30,8 @@ public class DetailActivity extends Activity {
     private ImageView imageView;
     Camera mCamera;
     MediaRecorder mMediaRecorder;
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    public static final int MEDIA_TYPE_VIDEO = 2;
 
 
     @Override
@@ -49,6 +56,12 @@ public class DetailActivity extends Activity {
         imageView = (ImageView)findViewById(R.id.detailVidScreenShotImageView);
         int resID = getResources().getIdentifier(imageString , "drawable", getPackageName());
         imageView.setImageResource(resID);
+//        prepareVideoRecorder();
+//        mMediaRecorder.setMaxDuration(15000);
+//        mMediaRecorder.start();
+//        mMediaRecorder.stop();
+//        mMediaRecorder.release();
+
 
 
     }
@@ -64,38 +77,38 @@ public class DetailActivity extends Activity {
 
     }
 
-    /** A safe way to get an instance of the Camera object. */
-    public static Camera getCameraInstance(){
-        Camera c = null;
-        try {
-            c = openFrontFacingCamera(); // attempt to get a Camera instance
-        }
-        catch (Exception e){
-            // Camera is not available (in use or does not exist)
-        }
-        return c; // returns null if camera is unavailable
-    }
-
-    /** iterate through the available cameras and choose the front facing one. */
-    private static Camera openFrontFacingCamera()
-    {
-        int cameraCount = 0;
-        Camera cam = null;
-        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-        cameraCount = Camera.getNumberOfCameras();
-        for ( int camIdx = 0; camIdx < cameraCount; camIdx++ ) {
-            Camera.getCameraInfo( camIdx, cameraInfo );
-            if ( cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT  ) {
-                try {
-                    cam = Camera.open( camIdx );
-                } catch (RuntimeException e) {
-                    Log.e(TAG, "Camera failed to open: " + e.getLocalizedMessage());
-                }
-            }
-        }
-
-        return cam;
-    }
+//    /** A safe way to get an instance of the Camera object. */
+//    public static Camera getCameraInstance(){
+//        Camera c = null;
+//        try {
+//            c = openFrontFacingCamera(); // attempt to get a Camera instance
+//        }
+//        catch (Exception e){
+//            // Camera is not available (in use or does not exist)
+//        }
+//        return c; // returns null if camera is unavailable
+//    }
+//
+//    /** iterate through the available cameras and choose the front facing one. */
+//    private static Camera openFrontFacingCamera()
+//    {
+//        int cameraCount = 0;
+//        Camera cam = null;
+//        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+//        cameraCount = Camera.getNumberOfCameras();
+//        for ( int camIdx = 0; camIdx < cameraCount; camIdx++ ) {
+//            Camera.getCameraInfo( camIdx, cameraInfo );
+//            if ( cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT  ) {
+//                try {
+//                    cam = Camera.open( camIdx );
+//                } catch (RuntimeException e) {
+//                    Log.e(TAG, "Camera failed to open: " + e.getLocalizedMessage());
+//                }
+//            }
+//        }
+//
+//        return cam;
+//    }
 //    private boolean prepareVideoRecorder(){
 //
 //        mCamera = getCameraInstance();
@@ -132,9 +145,67 @@ public class DetailActivity extends Activity {
 //        }
 //        return true;
 //    }
-
-
-
-
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        releaseMediaRecorder();       // if you are using MediaRecorder, release it first
+//        releaseCamera();              // release the camera immediately on pause event
+//    }
+//
+//    private void releaseMediaRecorder(){
+//        if (mMediaRecorder != null) {
+//            mMediaRecorder.reset();   // clear recorder configuration
+//            mMediaRecorder.release(); // release the recorder object
+//            mMediaRecorder = null;
+//            mCamera.lock();           // lock camera for later use
+//        }
+//    }
+//
+//    private void releaseCamera(){
+//        if (mCamera != null){
+//            mCamera.release();        // release the camera for other applications
+//            mCamera = null;
+//        }
+//    }
+//
+//    /** Create a file Uri for saving an image or video */
+//    private static Uri getOutputMediaFileUri(int type){
+//        return Uri.fromFile(getOutputMediaFile(type));
+//    }
+//
+//    /** Create a File for saving an image or video */
+//    private static File getOutputMediaFile(int type){
+//        // To be safe, you should check that the SDCard is mounted
+//        // using Environment.getExternalStorageState() before doing this.
+//
+//        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES), "MyCameraApp");
+//        // This location works best if you want the created images to be shared
+//        // between applications and persist after your app has been uninstalled.
+//
+//        // Create the storage directory if it does not exist
+//        if (! mediaStorageDir.exists()){
+//            if (! mediaStorageDir.mkdirs()){
+//                Log.d("MyCameraApp", "failed to create directory");
+//                return null;
+//            }
+//        }
+//
+//        // Create a media file name
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        File mediaFile;
+//        if (type == MEDIA_TYPE_IMAGE){
+//            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+//                    "IMG_"+ timeStamp + ".jpg");
+//        } else if(type == MEDIA_TYPE_VIDEO) {
+//            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+//                    "VID_"+ timeStamp + ".mp4");
+//        } else {
+//            return null;
+//        }
+//
+//        return mediaFile;
+//    }
 
 }

@@ -7,12 +7,14 @@ import java.util.Date;
  */
 public class Video {
     public String mDate;
+    public String mName;
     public String mTags;
     public String mNameOfImage;
 
-    public Video (String mDate, String mTags,String mNameOfImage ){
+    public Video (String mDate, String name, String mTags,String mNameOfImage ){
 
         this.mDate = mDate;
+        this.mName = name;
         this.mTags = mTags;
         this.mNameOfImage = mNameOfImage;
 
