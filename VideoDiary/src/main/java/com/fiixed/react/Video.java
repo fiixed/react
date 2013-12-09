@@ -1,6 +1,4 @@
-package com.fiixed.videodiary;
-
-import java.util.Date;
+package com.fiixed.react;
 
 /**
  * Created by abell on 11/18/13.

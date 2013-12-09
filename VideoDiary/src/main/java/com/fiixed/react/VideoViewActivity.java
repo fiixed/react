@@ -1,4 +1,4 @@
-package com.fiixed.videodiary;
+package com.fiixed.react;
 
 import android.app.Activity;
 import android.net.Uri;

@@ -1,4 +1,4 @@
-package com.fiixed.videodiary;
+package com.fiixed.react;
 
 import android.content.Context;
 import android.view.LayoutInflater;
